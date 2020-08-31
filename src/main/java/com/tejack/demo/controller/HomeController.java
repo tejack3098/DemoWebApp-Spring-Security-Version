@@ -11,13 +11,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.tejack.demo.model.User;
 import com.tejack.demo.service.OTP_Service;
-import com.tejack.demo.service.CustomUserDetailsService;
 
 @Controller
 public class HomeController {
 	
-	@Autowired
-	CustomUserDetailsService userDetails;
 	
 	@Autowired
 	OTP_Service otpService;
@@ -30,7 +27,6 @@ public class HomeController {
 		 
 		 if(org_otp == user_otp) {
 			 otpService.clearOTP(email);
-			 mv.addObject("name", userDetails.getusername(user));
 			 mv.setViewName("redirect:welcome");
 			 return mv;
 	 

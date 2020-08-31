@@ -10,21 +10,19 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tejack.demo.model.User;
+import com.tejack.demo.service.MyUserDetailsService;
 import com.tejack.demo.service.OTPmailService;
-import com.tejack.demo.service.RegisterService;
-import com.tejack.demo.service.CustomUserDetailsService;
+
 
 @Controller
 @SessionAttributes("name")
 public class RegisterController {
-	@Autowired
-	RegisterService service;
-
-	@Autowired
-	CustomUserDetailsService userDetails;
 
 	@Autowired
 	OTPmailService mailService;
+	
+	@Autowired
+	MyUserDetailsService userService;
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ModelAndView RegisterUser(ModelAndView mv, @ModelAttribute User user, @RequestParam String c_pass) {
@@ -36,22 +34,16 @@ public class RegisterController {
 			return mv;
 		}
 
-		boolean chk_exists = userDetails.chk_email(user);
-
-		if (chk_exists) {
-
-			mv.addObject("errorMessage", "Email Id Already Exists!");
-			mv.setViewName("login");
-			return mv;
-
-		}
-
-		boolean isUserRegistered = service.RegisterUser(user);
-
-		if (!isUserRegistered) {
+		try {
+			
+			userService.signUpUser(user);
+			
+		}catch(Exception e) {
+			
 			mv.addObject("errorMessage", "Invalid Credentials");
 			mv.setViewName("login");
-			return mv;
+			return mv;	
+			
 		}
 
 		boolean mailStatus = mailService.MailOTP(user.getEmail());

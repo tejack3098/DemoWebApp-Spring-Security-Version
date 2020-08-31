@@ -1,4 +1,4 @@
-package com.tejack.demo.securityservice;
+package com.tejack.demo.model;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -6,8 +6,6 @@ import java.util.Collections;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import com.tejack.demo.model.User;
 
 public class UserPrincipal implements UserDetails {
 

@@ -32,7 +32,7 @@
       <div class="sidebar-heading">Start Bootstrap </div>
       <div class="list-group list-group-flush">
         <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-        <a href="/admin" class="list-group-item list-group-item-action bg-light">ADMIN PAGE</a>
+        <a href="/admin" class="list-group-item list-group-item-action bg-light">Admin</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
@@ -75,10 +75,7 @@
       </nav>
 
       <div class="container-fluid">
-      	<security:authorize access="isAuthenticated()">
-	    	<h1 class="mt-4"> Welcome <security:authentication property="principal.username" /> </h1>
-		</security:authorize>
-   		
+   		<h1 class="mt-4"> ADMIN PAGE </h1>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
      
       </div>

@@ -41,6 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.csrf().disable()
 			.authorizeRequests().antMatchers("/login","/logout","/register", "/getotp","/verifyotp").permitAll()
 			.antMatchers("/assets/**").permitAll()
+			.antMatchers("/admin").hasAuthority("ADMIN")
 			.anyRequest().authenticated()
 			.and()
 			.formLogin()
@@ -51,7 +52,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.logout().invalidateHttpSession(true)
 			.clearAuthentication(true)
 			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-			.logoutSuccessUrl("/login").permitAll();
+			.logoutSuccessUrl("/login").permitAll()
+			.and()
+			.exceptionHandling().accessDeniedPage("/403");
 					
 	}
 	

@@ -39,8 +39,8 @@ public class RegisterController {
 			userService.signUpUser(user);
 			
 		}catch(Exception e) {
-			
-			mv.addObject("errorMessage", "Invalid Credentials");
+			System.out.println(e);
+			mv.addObject("errorMessage", "Email Id Already Exists!!");
 			mv.setViewName("login");
 			return mv;	
 			
